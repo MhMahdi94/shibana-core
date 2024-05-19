@@ -43,4 +43,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/order/create', 'App\Http\Controllers\API\Customer\OrderController@save_order');
     Route::get('/order/list/running', 'App\Http\Controllers\API\Customer\OrderController@get_orders');
     Route::get('/order/list/history', 'App\Http\Controllers\API\Customer\OrderController@get_orders_history');
+
+    //wallet
+    Route::post('/wallet/create', 'App\Http\Controllers\API\Customer\WalletController@create_wallet');
+    Route::get('/wallet/get', 'App\Http\Controllers\API\Customer\WalletController@get_wallet');
+    Route::post('/wallet/topup', 'App\Http\Controllers\API\Customer\WalletController@top_wallet');
 });

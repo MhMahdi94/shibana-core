@@ -67,7 +67,7 @@ class OrderController extends Controller
     public function get_orders(){
         try {
             //code...
-            $orders=Order::where('user_id', Auth::id())->where('order_status',0)->with(['resturant' => function ($query) {
+            $orders=Order::where('user_id', Auth::id())->where('order_status',1)->with(['resturant' => function ($query) {
                 $query->select('id', 'name', 'image');
             }])->get();
             return response([
