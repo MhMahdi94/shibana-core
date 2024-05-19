@@ -41,4 +41,24 @@ class CartController extends Controller
             //'cart'=>$cart,
         ]);
     }
+
+    public function remove_from_cart(int $id){
+        try {
+            //code...
+            CartModel::where([['user_id',Auth::id()],['id',$id]])->delete();
+            return response([
+                'success'=>0,
+                'message'=>'Added Successfully',
+                //'cart'=>$cart,
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response([
+                'success'=>1,
+                'message'=>'err: '.$th,
+                //'cart'=>$cart,
+            ]);
+        }
+        
+    }
 }

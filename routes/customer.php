@@ -32,8 +32,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/wishlist/meals', 'App\Http\Controllers\API\Customer\WishlistController@add_meal_wishlist');
     Route::post('/wishlist/resturants', 'App\Http\Controllers\API\Customer\WishlistController@add_resturant_wishlist');
     Route::get('/wishlist/resturants', 'App\Http\Controllers\API\Customer\WishlistController@get_resturant_wishlist');
+    Route::get('/wishlist/meals', 'App\Http\Controllers\API\Customer\WishlistController@get_meals_wishlist');
 
     //cart
     Route::get('/cart/list', 'App\Http\Controllers\API\Customer\CartController@get_cart');
     Route::post('/cart/add', 'App\Http\Controllers\API\Customer\CartController@add_to_cart');
+    Route::get('/cart/remove/{id}', 'App\Http\Controllers\API\Customer\CartController@remove_from_cart');
+
+    //order
+    Route::post('/order/create', 'App\Http\Controllers\API\Customer\OrderController@save_order');
+    Route::get('/order/list/running', 'App\Http\Controllers\API\Customer\OrderController@get_orders');
+    Route::get('/order/list/history', 'App\Http\Controllers\API\Customer\OrderController@get_orders_history');
 });

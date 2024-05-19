@@ -272,6 +272,44 @@
                         </li>
                      </ul>
                  </li>
+
+                 {{-- Orders Managment --}}
+                 <h2
+                     class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                     <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                         <line x1="5" y1="12" x2="19" y2="12"></line>
+                     </svg>
+                     <span>Orders Management</span>
+                 </h2>
+
+                 <li class="nav-item">
+                     <ul>
+                         {{-- Orders --}}
+                         <li class="nav-item">
+                             <a href="{{ route('admin.orders.orders_index') }}" class="group">
+                                 <div class="flex items-center">
+                                     <svg class="shrink-0 group-hover:!text-primary" width="20" height="20"
+                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                         <path
+                                             d="M18.9986 18H5.00195C5.01214 19.3969 5.08369 20.9119 5.58605 21.4142C6.17183 22 7.11464 22 9.00026 22H15.0003C16.8859 22 17.8287 22 18.4145 21.4142C18.9168 20.9119 18.9884 19.3969 18.9986 18Z"
+                                             fill="#1C274C" />
+                                         <path opacity="0.5"
+                                             d="M7 5C4.23858 5 2 7.23858 2 10C2 12.0503 3.2341 13.8124 5 14.584V18H19L19 14.584C20.7659 13.8124 22 12.0503 22 10C22 7.23858 19.7614 5 17 5C16.7495 5 16.5033 5.01842 16.2626 5.05399C15.6604 3.27806 13.9794 2 12 2C10.0206 2 8.33961 3.27806 7.73736 5.05399C7.49673 5.01842 7.25052 5 7 5Z"
+                                             fill="#1C274C" />
+
+                                     </svg>
+
+                                     <span
+                                         class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Orders</span>
+
+
+                                 </div>
+                             </a>
+                         </li>
+                        
+                     </ul>
+                 </li>
              </ul>
 
 

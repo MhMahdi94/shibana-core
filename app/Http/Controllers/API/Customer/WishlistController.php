@@ -13,7 +13,7 @@ class WishlistController extends Controller
 {
     //
     public function add_meal_wishlist(Request $request){
-        $item= MealsWishlist::where([['user_id',$request->user_id],['meal_id',$request->meal_id],])->first();
+        $item= MealsWishlist::where([['user_id',Auth::id()],['meal_id',$request->meal_id],])->first();
         if($item){
             
             try {
@@ -53,7 +53,7 @@ class WishlistController extends Controller
     }
 
     public function add_resturant_wishlist(Request $request){
-        $item= ResturantWishlist::where([['user_id',$request->user_id],['resturant_id',$request->resturant_id],])->first();
+        $item= ResturantWishlist::where([['user_id',Auth::id()],['resturant_id',$request->resturant_id],])->first();
         if($item){
             
             try {
@@ -103,6 +103,20 @@ class WishlistController extends Controller
             'success'=>0,
             'message'=>'Addded Successfully',
             'wishlist'=>$resturants,
+        ]);
+    }
+
+    public function get_meals_wishlist(){
+        $meals= MealsWishlist::where('user_id',Auth::id())->with('meal')->get();
+        // foreach ($resturants as $resturant => $value) {
+        //     # code...
+        //     $rest=Resturaunt::where('id',$value->resturant_id)->first();
+        //     $value->resturant=$rest;
+        // }
+        return response([
+            'success'=>0,
+            'message'=>'Addded Successfully',
+            'wishlist'=>$meals,
         ]);
     }
 }

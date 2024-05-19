@@ -13,7 +13,7 @@ class MealsWishlist extends Model
         'meal_id'
     ];
     public function meal(){
-        return $this->belongsTo(Resturaunt::class,'meal_id');
+        return $this->belongsTo(Meal::class,'meal_id');
     }
     public function user(){
         return $this->belongsTo(Customer::class,'user_id');

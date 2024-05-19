@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CuisineController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MealController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RestaurantsController;
 use Illuminate\Support\Facades\Route;
 
@@ -107,5 +108,17 @@ Route::group([
         Route::put('/update/{id}',[MealController::class, 'update'])->name('meals_update');
         Route::delete('/delete/{id}',[MealController::class, 'destroy'])->name('meals_destroy');
         Route::post('/update-status',[MealController::class, 'status'])->name('meals_status');
+      });
+      //meals
+      Route::group(['prefix' => '/orders',
+      'as' => 'orders.',],function ()  {
+        Route::get('/',[OrderController::class, 'index'])->name('orders_index');
+        Route::post('/search',[OrderController::class, 'search'])->name('orders_search');
+        Route::get('/create',[OrderController::class, 'create'])->name('orders_create');
+        Route::post('/store',[OrderController::class, 'store'])->name('orders_store');
+        Route::get('/edit/{id}',[OrderController::class, 'edit'])->name('orders_edit');
+        Route::put('/update/{id}',[OrderController::class, 'update'])->name('orders_update');
+        Route::delete('/delete/{id}',[OrderController::class, 'destroy'])->name('orders_destroy');
+        Route::post('/update-status',[OrderController::class, 'status'])->name('orders_status');
       });
 });
