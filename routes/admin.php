@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RestaurantsController;
+use App\Http\Controllers\Admin\WalletController;
+use App\Http\Controllers\Admin\WalletTransactionsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -120,5 +122,31 @@ Route::group([
         Route::put('/update/{id}',[OrderController::class, 'update'])->name('orders_update');
         Route::delete('/delete/{id}',[OrderController::class, 'destroy'])->name('orders_destroy');
         Route::post('/update-status',[OrderController::class, 'status'])->name('orders_status');
+      });
+
+      //wallet
+      Route::group(['prefix' => '/wallet',
+      'as' => 'wallet.',],function ()  {
+        Route::get('/',[WalletController::class, 'index'])->name('wallet_index');
+        Route::post('/search',[WalletController::class, 'search'])->name('wallet_search');
+        Route::get('/create',[WalletController::class, 'create'])->name('wallet_create');
+        Route::post('/store',[WalletController::class, 'store'])->name('wallet_store');
+        Route::get('/edit/{id}',[WalletController::class, 'edit'])->name('wallet_edit');
+        Route::put('/update/{id}',[WalletController::class, 'update'])->name('wallet_update');
+        Route::delete('/delete/{id}',[WalletController::class, 'destroy'])->name('wallet_destroy');
+        Route::post('/update-status',[WalletController::class, 'status'])->name('wallet_status');
+      });
+
+      //wallet transactions
+      Route::group(['prefix' => '/wallet_transactions',
+      'as' => 'wallet_transactions.',],function ()  {
+        Route::get('/',[WalletTransactionsController::class, 'index'])->name('wallet_transactions_index');
+        Route::post('/search',[WalletTransactionsController::class, 'search'])->name('wallet_transactions_search');
+        Route::get('/create',[WalletTransactionsController::class, 'create'])->name('wallet_transactions_create');
+        Route::post('/store',[WalletTransactionsController::class, 'store'])->name('wallet_transactions_store');
+        Route::get('/edit/{id}',[WalletTransactionsController::class, 'edit'])->name('wallet_transactions_edit');
+        Route::put('/update/{id}',[WalletTransactionsController::class, 'update'])->name('wallet_transactions_update');
+        Route::delete('/delete/{id}',[WalletTransactionsController::class, 'destroy'])->name('wallet_transactions_destroy');
+        Route::post('/update-status',[WalletTransactionsController::class, 'status'])->name('wallet_transactions_status');
       });
 });

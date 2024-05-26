@@ -2,7 +2,7 @@
 @section('content')
     <div class="panel">
         <div class="mb-5 flex items-center justify-between">
-            <h5 class="text-lg font-semibold dark:text-white-light">Wallets Table</h5>
+            <h5 class="text-lg font-semibold dark:text-white-light">Wallets Transactions Table</h5>
             <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                 href="{{ route('admin.resturants.resturants_create') }}">
                 {{-- <span class="flex items-center">
@@ -16,22 +16,29 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Balance</th>
+                        <th>Operation</th>
+                        <th>Amount</th>
+                        <th>Mobile Number</th>
                         <th class="text-center">Action </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($wallets as $wallet)
+                 @foreach ($wallet_transactions as $transaction)
                         <tr>
                            <td class="">
 
-                                <span class="flex-1 text-lg font-semibold text-orange"> {{ $wallet->user->name??'Unknown' }}</span>
-                                <input type="hidden" name="id" class="id" value="{{ $wallet->id }}">
+                                <span class="flex-1 text-lg font-semibold text-orange"> {{ $transaction->user->name??'Unknown' }}</span>
+                                <input type="hidden" name="id" class="id" value="{{ $transaction->id }}">
                             </td>
                             <td>
-                                {{ $wallet->balance }}
+                                {{ $transaction->amount }}
                             </td>
-                     
+                            <td>
+                                {{ $transaction->operation->name }}
+                            </td>
+                            <td>
+                                {{ $transaction->user->mobile_no??'N/A' }}
+                            </td>
                             {{-- <td class="text-center">
                                 <a href="{{ route('admin.resturants.resturants_edit', $resturant->id) }}" type="button"
                                     x-tooltip="Edit">
