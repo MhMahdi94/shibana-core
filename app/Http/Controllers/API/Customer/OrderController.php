@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CartModel;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class OrderController extends Controller
 {
     //
     public function save_order(Request $request){
-      //  return $request->all();
+        //return $request->all();
         try {
             //code...
             $order= Order::create([
@@ -27,6 +28,12 @@ class OrderController extends Controller
                 'vat'=> $request->vat, 
                 'resturant_id'=> $request->resturant_id, 
                 'total_price'=> $request->total_price, 
+                'resturant_notes'=>$request->resturant_notes,
+                'payment_method'=>$request->payment_method,
+                'latitude'=>$request->latitude,
+                'longitude'=>$request->longitude,
+                'payment_status'=>$request->payment_method==1?'1':'0',
+                'verification_code'=>mt_rand(100000, 999999),
                 // 'payment_status'=>0,
                 //cart: [12]
             ]);

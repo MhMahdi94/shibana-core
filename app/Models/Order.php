@@ -15,11 +15,16 @@ class Order extends Model
         'delivery_date',
         'delivery_time',
         'delivery_notes',
+        'resturant_notes',
+        'payment_method',
         'price',
         'vat',
         'delivery',
         'total_price',
         'payment_status',
+        'verification_code',
+        'latitude',
+        'longitude'
     ];
 
     public function resturant(){
@@ -31,5 +36,9 @@ class Order extends Model
 
     public function status(){
         return $this->belongsTo(OrderStatus::class,'order_status');
+    }
+
+    public function payment(){
+        return $this->belongsTo(PaymentMethod::class,'payment_method');
     }
 }

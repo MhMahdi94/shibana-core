@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $orders=Order::paginate(10);
+        $orders=Order::orderBy('id','desc')-> get();
         $total_price=Order::sum('price');
         $vat=Order::sum('price');
         $totalAmount=$total_price + $vat;

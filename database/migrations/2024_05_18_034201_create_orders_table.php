@@ -18,13 +18,18 @@ return new class extends Migration
             $table->string('address');
             $table->string('delivery_date');
             $table->string('delivery_time');
-            $table->string('delivery_notes');
+            $table->string('delivery_notes')->nullable();
+            $table->string('resturants_notes')->nullable();
+            $table->integer('payment_method');
             $table->string('price');
             $table->string('vat');
             $table->string('delivery');
             $table->string('total_price');
             $table->integer('payment_status')->default(0);
             $table->integer('order_status')->default(0);
+            $table->string('longitude');
+            $table->string('latitude');
+            $table->string('verification_code');
             $table->timestamps();
         });
     }
