@@ -15,4 +15,11 @@ class WalletTransaction extends Model
         'amount'
     ];
 
+    public function user(){
+        return $this->belongsTo(Customer::class,'user_id');
+    }
+
+    public function operation(){
+        return $this->belongsTo(WalletOperation::class,'operation_id');
+    }
 }

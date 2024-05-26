@@ -48,4 +48,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/wallet/create', 'App\Http\Controllers\API\Customer\WalletController@create_wallet');
     Route::get('/wallet/get', 'App\Http\Controllers\API\Customer\WalletController@get_wallet');
     Route::post('/wallet/topup', 'App\Http\Controllers\API\Customer\WalletController@top_wallet');
+    Route::post('/wallet/transfer', 'App\Http\Controllers\API\Customer\WalletController@transfer_wallet');
+    Route::get('/wallet/transactions', 'App\Http\Controllers\API\Customer\WalletController@get_wallet_transaction');
 });

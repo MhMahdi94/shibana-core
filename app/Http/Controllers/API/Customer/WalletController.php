@@ -79,4 +79,59 @@ class WalletController extends Controller
             ]);
         }
     }
+
+    public function transfer_wallet(Request $request){
+       
+        
+        try {
+            //code...
+            $wallet=Wallet::where('user_id', Auth::id())->first();
+            $wallet->balance=$wallet->balance - $request->amount;
+            $wallet->save();
+            WalletTransaction::create([
+                'user_id'=>Auth::id(),
+                'amount'=>$request->amount,
+                'operation_id'=>2,
+            ]);
+
+            $to=Wallet::where('account_no',$request->account_no)->first();
+            $to->balance=$to->balance + $request->amount;
+            $to->save();
+            WalletTransaction::create([
+                'user_id'=>$to->user_id,
+                'amount'=>$request->amount,
+                'operation_id'=>2,
+            ]);
+
+            return response([
+                'success'=>0,
+                'message'=>'Success Transfer',
+                
+            ],200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response([
+                'success'=>1,
+                'message'=>$th->getMessage(),
+            ]);
+        }
+    }
+
+    public function get_wallet_transaction(){
+        try {
+            //code...
+            $wallet_tx=WalletTransaction::where('user_id', Auth::id())->with('operation')->orderby('id','desc')->limit(5)->get();
+            return response([
+                'success'=>0,
+                'message'=>'Success',
+                'wallet_transactions'=>$wallet_tx,
+            ],200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response([
+                'success'=>1,
+                'message'=>$th,
+            ]);
+        }
+    }
 }
